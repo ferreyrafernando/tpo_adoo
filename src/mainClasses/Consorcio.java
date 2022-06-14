@@ -11,6 +11,7 @@ public class Consorcio {
     private List<UnidadFuncional> unidades_funcionales;
 
     //TODO Chequear metodo
+    // Recorrer  List<UnidadFuncional> e invocar el metodo calcularExpensas de c/u de ellas
     //public void calcularExpensas(Administrador responsable, Criterio: criterio);
 
     //TODO Chequear metodo
