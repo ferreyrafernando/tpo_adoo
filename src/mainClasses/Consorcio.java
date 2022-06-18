@@ -10,6 +10,14 @@ public class Consorcio {
     private String domicilio;
     private List<UnidadFuncional> unidades_funcionales;
 
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
     //TODO Chequear metodo
     // Recorrer  List<UnidadFuncional> e invocar el metodo calcularExpensas de c/u de ellas
     //public void calcularExpensas(Administrador responsable, Criterio: criterio);

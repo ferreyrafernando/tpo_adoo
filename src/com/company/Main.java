@@ -3,6 +3,10 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
+import mainClasses.Administrador;
+import mainClasses.Consorcio;
+import mainClasses.estrategias.EstrategiaDeLiquidacion;
+import mainClasses.estrategias.PagoCompletoGasto;
 import moduloNotificaciones.Notificacion;
 import moduloNotificaciones.Notificador;
 import moduloNotificaciones.estrategias.Estrategia;
@@ -17,6 +21,14 @@ import moduloNotificaciones.estrategias.adapters.whatsapp.AdapterWhatsAppService
 public class Main {
 
     public static void main(String[] args) {
+
+        Administrador administrador=new Administrador("Juan","Perez");
+        EstrategiaDeLiquidacion pagoCompletoGastoLiquidacion=new PagoCompletoGasto(); //Puede ser esta u otra
+        administrador.setEstrategiaDeLiquidacion(pagoCompletoGastoLiquidacion);
+
+        Consorcio consorcio=new Consorcio();
+        consorcio.setAdministrador(administrador);
+
         Notificador notificador = new Notificador();
         EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS(new AdapterSMSService());
         EstrategiaDeNotificacion notificadorWhatsApp = new NotificacionPorWhatsApp(new AdapterWhatsAppService());

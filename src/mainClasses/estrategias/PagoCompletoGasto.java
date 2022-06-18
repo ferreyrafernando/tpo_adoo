@@ -1,26 +1,24 @@
 package mainClasses.estrategias;
 
+import commonClasses.Gasto;
+import mainClasses.Administrador;
+
 public class PagoCompletoGasto extends EstrategiaDeLiquidacion {
 
-    @Override
-    void calcularExpensas() {
+    private final String NOMBRE_CRITERIO = "Pago completo de gastos";
 
+    @Override
+    void calcularExpensas(Administrador responsable, Gasto deudaPrevia) {
+        System.out.println("El Administrador " + responsable.getNombre() + " " + responsable.getApellido() + " inició el calculo de expensas");
+        System.out.println("El gasto adeudado es de " + deudaPrevia.getImporte());
+        System.out.println("Calculando expensas segun el criterio de " + NOMBRE_CRITERIO);
     }
 
     @Override
     void divisionExpensas() {
-
+        System.out.println("Dividiendo expensas para " + NOMBRE_CRITERIO);
     }
 
-    //TODO Chequear si este metodo se usa y si debe ser abstract
-    @Override
-    void obtencionSaldos() {
-
-    }
-
-    //TODO Chequear si este metodo se usa y si debe ser abstract
-    @Override
-    void calculoGastos() {
-
-    }
 }
+
+

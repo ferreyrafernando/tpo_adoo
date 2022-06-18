@@ -8,6 +8,14 @@ public class Gasto {
     private Date fecha;
     private Expensa expensa;
 
+    public Double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Double importe) {
+        this.importe = importe;
+    }
+
     //TODO Chequear metodo
     //public void cargarGasto();
 }
