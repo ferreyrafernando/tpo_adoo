@@ -813,9 +813,9 @@
 										"$ref": "AAAAAAGAhpRfJjLeh68="
 									},
 									"font": "Arial;13;0",
-									"left": 441,
+									"left": 440,
 									"top": 638,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -3986,7 +3986,7 @@
 											"font": "Arial;13;1",
 											"left": 957,
 											"top": 295,
-											"width": 308.88330078125,
+											"width": 454.14306640625,
 											"height": 13,
 											"text": "PagoCompletoGasto"
 										},
@@ -4021,7 +4021,7 @@
 									"font": "Arial;13;0",
 									"left": 952,
 									"top": 288,
-									"width": 318.88330078125,
+									"width": 464.14306640625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGAhvd21I3j3lI="
@@ -4048,7 +4048,7 @@
 									"font": "Arial;13;0",
 									"left": 952,
 									"top": 313,
-									"width": 318.88330078125,
+									"width": 464.14306640625,
 									"height": 10
 								},
 								{
@@ -4073,9 +4073,9 @@
 											"font": "Arial;13;0",
 											"left": 957,
 											"top": 328,
-											"width": 308.88330078125,
+											"width": 454.14306640625,
 											"height": 13,
-											"text": "+calcularExpensas(reponsable, criterio: Criterio): void",
+											"text": "+calcularExpensas(deudaPrevia: BigDecimal, reponsable: Administrador): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4090,7 +4090,7 @@
 											"font": "Arial;13;0",
 											"left": 957,
 											"top": 343,
-											"width": 308.88330078125,
+											"width": 454.14306640625,
 											"height": 13,
 											"text": "+divisionExpensas(): void",
 											"horizontalAlignment": 0
@@ -4099,7 +4099,7 @@
 									"font": "Arial;13;0",
 									"left": 952,
 									"top": 323,
-									"width": 318.88330078125,
+									"width": 464.14306640625,
 									"height": 38
 								},
 								{
@@ -4139,7 +4139,7 @@
 							"containerChangeable": true,
 							"left": 952,
 							"top": 288,
-							"width": 318.88330078125,
+							"width": 464.14306640625,
 							"height": 73,
 							"nameCompartment": {
 								"$ref": "AAAAAAGAhvd21I3i5jc="
@@ -4185,7 +4185,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 832,
+											"left": 1104,
 											"top": 304,
 											"height": 13
 										},
@@ -4196,9 +4196,9 @@
 												"$ref": "AAAAAAGAhvfaYpDF32s="
 											},
 											"font": "Arial;13;1",
-											"left": 1301,
+											"left": 1437,
 											"top": 295,
-											"width": 308.88330078125,
+											"width": 454.14306640625,
 											"height": 13,
 											"text": "PagoCompletoFondoDeReserva"
 										},
@@ -4210,7 +4210,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 832,
+											"left": 1104,
 											"top": 304,
 											"width": 73.67724609375,
 											"height": 13,
@@ -4224,16 +4224,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 832,
+											"left": 1104,
 											"top": 304,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1296,
+									"left": 1432,
 									"top": 288,
-									"width": 318.88330078125,
+									"width": 464.14306640625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGAhvfaYpDGEPo="
@@ -4258,9 +4258,9 @@
 										"$ref": "AAAAAAGAhvfaYpDCsl4="
 									},
 									"font": "Arial;13;0",
-									"left": 1296,
+									"left": 1432,
 									"top": 313,
-									"width": 318.88330078125,
+									"width": 464.14306640625,
 									"height": 10
 								},
 								{
@@ -4283,11 +4283,11 @@
 												"$ref": "AAAAAAGAhwZwSUYhfOA="
 											},
 											"font": "Arial;13;0",
-											"left": 1301,
+											"left": 1437,
 											"top": 328,
-											"width": 308.88330078125,
+											"width": 454.14306640625,
 											"height": 13,
-											"text": "+calcularExpensas(reponsable, criterio: Criterio): void",
+											"text": "+calcularExpensas(deudaPrevia: BigDecimal, reponsable: Administrador): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4300,18 +4300,18 @@
 												"$ref": "AAAAAAGAjGmK1MKKi4U="
 											},
 											"font": "Arial;13;0",
-											"left": 1301,
+											"left": 1437,
 											"top": 343,
-											"width": 308.88330078125,
+											"width": 454.14306640625,
 											"height": 13,
 											"text": "+divisionExpensas(): void",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1296,
+									"left": 1432,
 									"top": 323,
-									"width": 318.88330078125,
+									"width": 464.14306640625,
 									"height": 38
 								},
 								{
@@ -4325,7 +4325,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 416,
+									"left": 552,
 									"top": 152,
 									"width": 10,
 									"height": 10
@@ -4341,7 +4341,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 416,
+									"left": 552,
 									"top": 152,
 									"width": 10,
 									"height": 10
@@ -4349,9 +4349,9 @@
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 1296,
+							"left": 1432,
 							"top": 288,
-							"width": 318.88330078125,
+							"width": 464.14306640625,
 							"height": 73,
 							"nameCompartment": {
 								"$ref": "AAAAAAGAhvfaYpDF32s="
@@ -4397,8 +4397,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1872,
-											"top": 272,
+											"left": 1904,
+											"top": 320,
 											"height": 13
 										},
 										{
@@ -4408,9 +4408,9 @@
 												"$ref": "AAAAAAGAhvh3K5okXFk="
 											},
 											"font": "Arial;13;1",
-											"left": 1901,
-											"top": 271,
-											"width": 308.88330078125,
+											"left": 1917,
+											"top": 295,
+											"width": 454.14306640625,
 											"height": 13,
 											"text": "PagoCompletoFuturosFondosDeReserva"
 										},
@@ -4422,8 +4422,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1872,
-											"top": 272,
+											"left": 1904,
+											"top": 320,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -4436,16 +4436,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1872,
-											"top": 272,
+											"left": 1904,
+											"top": 320,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1896,
-									"top": 264,
-									"width": 318.88330078125,
+									"left": 1912,
+									"top": 288,
+									"width": 464.14306640625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGAhvh3K5olnjA="
@@ -4470,9 +4470,9 @@
 										"$ref": "AAAAAAGAhvh3KpohY9k="
 									},
 									"font": "Arial;13;0",
-									"left": 1896,
-									"top": 289,
-									"width": 318.88330078125,
+									"left": 1912,
+									"top": 313,
+									"width": 464.14306640625,
 									"height": 10
 								},
 								{
@@ -4495,11 +4495,11 @@
 												"$ref": "AAAAAAGAhwaFM0pmjVs="
 											},
 											"font": "Arial;13;0",
-											"left": 1901,
-											"top": 304,
-											"width": 308.88330078125,
+											"left": 1917,
+											"top": 328,
+											"width": 454.14306640625,
 											"height": 13,
-											"text": "+calcularExpensas(reponsable, criterio: Criterio): void",
+											"text": "+calcularExpensas(deudaPrevia: BigDecimal, reponsable: Administrador): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4512,18 +4512,18 @@
 												"$ref": "AAAAAAGAjGmxYMjkPXo="
 											},
 											"font": "Arial;13;0",
-											"left": 1901,
-											"top": 319,
-											"width": 308.88330078125,
+											"left": 1917,
+											"top": 343,
+											"width": 454.14306640625,
 											"height": 13,
 											"text": "+divisionExpensas(): void",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1896,
-									"top": 299,
-									"width": 318.88330078125,
+									"left": 1912,
+									"top": 323,
+									"width": 464.14306640625,
 									"height": 38
 								},
 								{
@@ -4537,8 +4537,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 936,
-									"top": 136,
+									"left": 952,
+									"top": 160,
 									"width": 10,
 									"height": 10
 								},
@@ -4553,17 +4553,17 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 936,
-									"top": 136,
+									"left": 952,
+									"top": 160,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 1896,
-							"top": 264,
-							"width": 318.88330078125,
+							"left": 1912,
+							"top": 288,
+							"width": 464.14306640625,
 							"height": 73,
 							"nameCompartment": {
 								"$ref": "AAAAAAGAhvh3K5okXFk="
@@ -7064,30 +7064,11 @@
 									"model": {
 										"$ref": "AAAAAAGAjGOpZCmw1wA="
 									},
-									"subViews": [
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGAsArSIDauD1Y=",
-											"_parent": {
-												"$ref": "AAAAAAGAjGOpZCm49FU="
-											},
-											"model": {
-												"$ref": "AAAAAAGAsArSCTaQfJI="
-											},
-											"font": "Arial;13;0",
-											"left": 1269,
-											"top": 94,
-											"width": 496.03759765625,
-											"height": 13,
-											"text": "-reponsable: Administrador",
-											"horizontalAlignment": 0
-										}
-									],
 									"font": "Arial;13;0",
 									"left": 1264,
 									"top": 89,
 									"width": 506.03759765625,
-									"height": 23
+									"height": 10
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -7110,10 +7091,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1269,
-											"top": 117,
+											"top": 104,
 											"width": 496.03759765625,
 											"height": 13,
-											"text": "+calcularExpensas(ideudaPrevia, n responsable: Administrador, criterio: Criterio): void",
+											"text": "+calcularExpensas(deudaPrevia: BigDecimal, reponsable: Administrador): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7127,7 +7108,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1269,
-											"top": 132,
+											"top": 119,
 											"width": 496.03759765625,
 											"height": 13,
 											"text": "+obtencionSaldos(): void",
@@ -7144,7 +7125,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1269,
-											"top": 147,
+											"top": 134,
 											"width": 496.03759765625,
 											"height": 13,
 											"text": "+calculoGastos(gastoAnterior): void",
@@ -7161,7 +7142,7 @@
 											},
 											"font": "Arial;13;2",
 											"left": 1269,
-											"top": 162,
+											"top": 149,
 											"width": 496.03759765625,
 											"height": 13,
 											"text": "+divisionExpensas(): void",
@@ -7170,7 +7151,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1264,
-									"top": 112,
+									"top": 99,
 									"width": 506.03759765625,
 									"height": 68
 								},
@@ -7250,8 +7231,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1284,
-									"top": 213,
+									"left": 1323,
+									"top": 214,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -7271,8 +7252,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1277,
-									"top": 200,
+									"left": 1315,
+									"top": 201,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -7292,8 +7273,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1297,
-									"top": 240,
+									"left": 1338,
+									"top": 239,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -7311,7 +7292,7 @@
 								"$ref": "AAAAAAGAhvd21I3h6lQ="
 							},
 							"lineStyle": 1,
-							"points": "1184:287;1398:180",
+							"points": "1244:287;1419:180",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGAjGbqBZKdF6s="
@@ -7344,8 +7325,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1466,
-									"top": 222,
+									"left": 1584,
+									"top": 235,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -7365,8 +7346,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1452,
-									"top": 217,
+									"left": 1572,
+									"top": 244,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -7386,8 +7367,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1495,
-									"top": 231,
+									"left": 1609,
+									"top": 218,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -7405,7 +7386,7 @@
 								"$ref": "AAAAAAGAhvfaYpDEmwY="
 							},
 							"lineStyle": 1,
-							"points": "1465:287;1498:180",
+							"points": "1636:287;1559:180",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGAjGb3K5VCUCc="
@@ -7438,8 +7419,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1813,
-									"top": 229,
+									"left": 1858,
+									"top": 241,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -7459,8 +7440,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1808,
-									"top": 243,
+									"left": 1853,
+									"top": 255,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -7480,8 +7461,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1822,
-									"top": 200,
+									"left": 1867,
+									"top": 212,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -7499,7 +7480,7 @@
 								"$ref": "AAAAAAGAhvh3K5oj8EA="
 							},
 							"lineStyle": 1,
-							"points": "1943:263;1693:180",
+							"points": "2029:287;1698:180",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGAjGcEsJpamj8="
@@ -14706,7 +14687,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhxWOsQEpAS8="
 									},
-									"name": "Double importeTotalConsorcio"
+									"name": "Double importeTotalConsorcio",
+									"type": ""
 								}
 							]
 						},
@@ -15831,7 +15813,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAsBCw+Gl3XkE="
 									},
-									"name": "EstrategiaDeLiquidacion estrategiaDeLiquidacion"
+									"name": "EstrategiaDeLiquidacion estrategiaDeLiquidacion",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -15867,7 +15850,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGBgYS8Z26vjQQ="
 									},
-									"name": "Gasto gasto"
+									"name": "Gasto gasto",
+									"type": ""
 								}
 							]
 						}
@@ -16694,8 +16678,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhwZIHTynkQw="
 									},
-									"name": "reponsable",
-									"type": ""
+									"name": "deudaPrevia",
+									"type": "BigDecimal"
 								},
 								{
 									"_type": "UMLParameter",
@@ -16703,9 +16687,9 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhwZIHTynkQw="
 									},
-									"name": "criterio",
+									"name": "reponsable",
 									"type": {
-										"$ref": "AAAAAAGAhwIFhCpw7uE="
+										"$ref": "AAAAAAGAhr1y4oCAsbk="
 									}
 								},
 								{
@@ -16831,8 +16815,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhwZwSUYhfOA="
 									},
-									"name": "reponsable",
-									"type": ""
+									"name": "deudaPrevia",
+									"type": "BigDecimal"
 								},
 								{
 									"_type": "UMLParameter",
@@ -16840,9 +16824,9 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhwZwSUYhfOA="
 									},
-									"name": "criterio",
+									"name": "reponsable",
 									"type": {
-										"$ref": "AAAAAAGAhwIFhCpw7uE="
+										"$ref": "AAAAAAGAhr1y4oCAsbk="
 									}
 								},
 								{
@@ -16968,8 +16952,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhwaFM0pmjVs="
 									},
-									"name": "reponsable",
-									"type": ""
+									"name": "deudaPrevia",
+									"type": "BigDecimal"
 								},
 								{
 									"_type": "UMLParameter",
@@ -16977,9 +16961,9 @@
 									"_parent": {
 										"$ref": "AAAAAAGAhwaFM0pmjVs="
 									},
-									"name": "criterio",
+									"name": "reponsable",
 									"type": {
-										"$ref": "AAAAAAGAhwIFhCpw7uE="
+										"$ref": "AAAAAAGAhr1y4oCAsbk="
 									}
 								},
 								{
@@ -17474,20 +17458,6 @@
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
 					"name": "EstrategiaDeLiquidacion",
-					"attributes": [
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGAsArSCTaQfJI=",
-							"_parent": {
-								"$ref": "AAAAAAGAjGOpZCmw1wA="
-							},
-							"name": "reponsable",
-							"visibility": "private",
-							"type": {
-								"$ref": "AAAAAAGAhr1y4oCAsbk="
-							}
-						}
-					],
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -17503,7 +17473,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGAjGQSbz6yCLU="
 									},
-									"name": "ideudaPrevia"
+									"name": "deudaPrevia",
+									"type": "BigDecimal"
 								},
 								{
 									"_type": "UMLParameter",
@@ -17511,7 +17482,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGAjGQSbz6yCLU="
 									},
-									"name": "n responsable",
+									"name": "reponsable",
 									"type": {
 										"$ref": "AAAAAAGAhr1y4oCAsbk="
 									}
@@ -17524,17 +17495,6 @@
 									},
 									"type": "void",
 									"direction": "return"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGAsA62FFlyxaw=",
-									"_parent": {
-										"$ref": "AAAAAAGAjGQSbz6yCLU="
-									},
-									"name": "criterio",
-									"type": {
-										"$ref": "AAAAAAGAhwIFhCpw7uE="
-									}
 								}
 							]
 						},
