@@ -1,15 +1,23 @@
-package commonClasses;
+package moduloBanco;
 
-import java.util.Date;
-
-public class CuentaBancaria {
-
+public class ServicioBancario {
     private String banco;
     private String nro_cuenta;
     private String cbu;
     private String alias;
     private Double saldo;
-    private FacadeSaldoBancario facade;
+
+    public ServicioBancario(String banco, String nro_cuenta, String cbu, String alias, Double saldo) {
+        this.banco = banco;
+        this.nro_cuenta = nro_cuenta;
+        this.cbu = cbu;
+        this.alias = alias;
+        this.saldo = saldo;
+    };
+
+    public Double getSaldo() {
+        return saldo;
+    }
 
     public String getBanco() {
         return banco;
@@ -41,10 +49,6 @@ public class CuentaBancaria {
 
     public void setAlias(String alias) {
         this.alias = alias;
-    }
-
-    public Double getSaldo() {
-        return facade.obtenerSaldoCompleto(new Date(2022,6,1), this.cbu, this.alias, "1234");
     }
 
     public void setSaldo(Double saldo) {

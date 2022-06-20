@@ -3,6 +3,8 @@ package mainClasses;
 import com.company.UsuarioNotificacionMock;
 import commonClasses.CuentaBancaria;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
+import moduloNotificaciones.Notificacion;
+import moduloNotificaciones.Notificador;
 
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class Consorcio {
         System.out.println("---------------------------------------------------------");
         System.out.println("U.F. |  Propietario           |  Porc. (%)  |  Saldo  |  Total");
 
+        // Aca chequeá el monto de las expensas del consorcio entonces dentro de cada UF se fija la deuda y el porcentaje que le corresponde por sus
+        // mts cuadrados.
         for(UnidadFuncional uf: this.unidades_funcionales ) {
             uf.calcularExpensas(criterio, 100000.00);
         }
@@ -68,7 +72,10 @@ public class Consorcio {
         this.unidades_funcionales = unidades_funcionales;
     }
 
-    //TODO Chequear metodo
-    //public void enviarNotificaciones(Expensa expensa, Notificacion notificacion);
+    //TODO Chequear metodo - Nose bien que hacer con la expensa acá.
+    // Pára mi no se debería recibir como parametro la notificación sino que se debe crear aca dentro.
+    public void enviarNotificacion(Expensa expensa, Notificacion notificacion)  {
+        Notificador.enviar(notificacion);
+    }
 
 }

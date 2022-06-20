@@ -7,6 +7,17 @@ import mainClasses.estrategias.EstrategiaDeLiquidacion;
 import java.util.Date;
 
 public class Administrador {
+    static Administrador instancia = null;
+
+    private Administrador() {};
+
+    public static Administrador getInstance() {
+        if(instancia == null) {
+            instancia = new Administrador();
+        }
+        return instancia;
+    }
+
     private String nombre;
     private String apellido;
 
@@ -43,6 +54,9 @@ public class Administrador {
 
     public void cargarGasto(Date fecha, Double importe, TipoGasto tipoGasto, Expensa expensa) {
         Gasto gasto = new Gasto(fecha, importe, tipoGasto, expensa);
+    }
+
+    public void cargarPago(Expensa expensa, Consorcio consorcio, int nroUf) {
 
     }
 }
