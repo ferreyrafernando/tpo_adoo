@@ -3,6 +3,17 @@ package mainClasses;
 import mainClasses.estrategias.EstrategiaLiquidacion;
 
 public class Administrador {
+    static Administrador instancia = null;
+
+    private Administrador() {};
+
+    public static Administrador getInstance() {
+        if(instancia == null) {
+            instancia = new Administrador();
+        }
+        return instancia;
+    }
+
     private String nombre;
     private String apellido;
     private EstrategiaLiquidacion estrategiaLiquidacion;

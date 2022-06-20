@@ -15,6 +15,7 @@ public class UnidadFuncional {
     private TipoUF tipo_uf;
     private List<PagoRealizado> pagosRealizados;
 
-    //TODO Chequear metodo
-    //public void calcularExpensas(Administrador responsable, Criterio: criterio);
+    public void calcularExpensas(Administrador responsable, Criterio criterio) {
+
+    }
 }
