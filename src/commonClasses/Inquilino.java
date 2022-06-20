@@ -4,12 +4,7 @@ public class Inquilino {
     private String nombre;
     private String apellido;
     private String email;
-
-    Inquilino(String nombre, String apellido, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-    }
+    private String numero;
 
     public String getNombre() {
         return nombre;
@@ -33,5 +28,13 @@ public class Inquilino {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 }

@@ -9,7 +9,15 @@ public class CuentaBancaria {
     private String cbu;
     private String alias;
     private Double saldo;
-    private FacadeSaldoBancario facade;
+    private FacadeSaldoBancario facade = new FacadeSaldoBancario();
+
+    public CuentaBancaria(String banco, String nro_cuenta, String cbu, String alias) {
+        this.banco = banco;
+        this.nro_cuenta = nro_cuenta;
+        this.cbu = cbu;
+        this.alias = alias;
+        this.saldo = getSaldo();
+    }
 
     public String getBanco() {
         return banco;

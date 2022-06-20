@@ -13,6 +13,7 @@ public class Expensa {
     private TipoExpensa tipo_expensa;
     private List<Gasto> gastos;
     private EstrategiaDeLiquidacion estrategia;
+    private Consorcio consorcio;
 
     public void cambiarEstrategiaDeLiquidacion(EstrategiaDeLiquidacion estrategia) {
         this.estrategia = estrategia;
@@ -21,15 +22,14 @@ public class Expensa {
     public void cargarGasto(Gasto gasto){
         System.out.println("Cargando Gasto: " + gasto.getTipoGasto());
         this.gastos.add(gasto);
-
     }
 
-    public Expensa(Date fecha, TipoExpensa tipoExpensa, List<Gasto> listGastos, EstrategiaDeLiquidacion criterio){
+    public Expensa(Date fecha, TipoExpensa tipoExpensa, List<Gasto> listGastos, EstrategiaDeLiquidacion criterio, Consorcio consorcio){
         this.fecha = fecha;
         this.tipo_expensa = tipoExpensa;
         this.gastos = listGastos;
         this.estrategia = criterio;
-
+        this.consorcio = consorcio;
     }
 
     public Date getFecha() {

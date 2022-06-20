@@ -4,11 +4,6 @@ public class Propietario {
     private String nombre;
     private String apellido;
 
-    Propietario(String nombre, String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
-
     public String getNombre() {
         return nombre;
     }

@@ -1,11 +1,9 @@
 package mainClasses;
 
-import com.company.UsuarioNotificacionMock;
 import commonClasses.CuentaBancaria;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
-import moduloNotificaciones.Notificacion;
-import moduloNotificaciones.Notificador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Consorcio {
@@ -14,6 +12,7 @@ public class Consorcio {
     private CuentaBancaria cuenta_bancaria;
     private String domicilio;
     private List<UnidadFuncional> unidades_funcionales;
+    private List<Expensa> expensas = new ArrayList<Expensa>();
 
     public Administrador getAdministrador() {
         return administrador;
@@ -23,20 +22,16 @@ public class Consorcio {
         this.administrador = administrador;
     }
 
-
-    //TODO Chequear metodo
-    // Recorrer  List<UnidadFuncional> e invocar el metodo calcularExpensas de c/u de ellas
-    public void calcularExpensas(Administrador responsable, EstrategiaDeLiquidacion criterio){
+    public void calcularExpensas() {
+        EstrategiaDeLiquidacion criterio = getAdministrador().getEstrategiaLiquidacion();
+        Double importeConsorcio = criterio.calcularExpensas(this);
         System.out.println("Calculando Expensas");
         System.out.println("---------------------------------------------------------");
-        System.out.println("Consorcio: "+ this.getNombre() + " Administrador Resp.: " + responsable.getNombre());
+        System.out.println("Consorcio: "+ this.getNombre() + " Administrador Resp.: " + getAdministrador().getNombre());
         System.out.println("---------------------------------------------------------");
         System.out.println("U.F. |  Propietario           |  Porc. (%)  |  Saldo  |  Total");
-
-        // Aca chequeá el monto de las expensas del consorcio entonces dentro de cada UF se fija la deuda y el porcentaje que le corresponde por sus
-        // mts cuadrados.
         for(UnidadFuncional uf: this.unidades_funcionales ) {
-            uf.calcularExpensas(criterio, 100000.00);
+            uf.calcularExpensas(criterio, importeConsorcio);
         }
     }
 
@@ -72,13 +67,11 @@ public class Consorcio {
         this.unidades_funcionales = unidades_funcionales;
     }
 
-    //TODO Chequear metodo - Nose bien que hacer con la expensa acá.
-    // Pára mi no se debería recibir como parametro la notificación sino que se debe crear aca dentro.
-    public void enviarNotificacion(Expensa expensa, UnidadFuncional unidadFuncional)  {
-        Notificacion nuevaNotificacion = new Notificacion();
-        nuevaNotificacion.setEmailDestinatario(unidadFuncional.getInquilino().getEmail());
-        nuevaNotificacion.setMensaje("Se genero una nueva expensa correspondiente a la fecha" + expensa.getFecha());
-        Notificador.enviar(nuevaNotificacion);
+    public List<Expensa> getExpensas() {
+        return expensas;
     }
 
+    public void addExpensa(Expensa expensa) {
+        this.expensas.add(expensa);
+    }
 }

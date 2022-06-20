@@ -34,55 +34,36 @@ public class Main {
         consorcio.setAdministrador(administrador);
         consorcio.setNombre("Consorcio UADE");
 
-        consorcio.setUnidades_funcionales(getUnidadesFuncionales());
+        CuentaBancaria cuentaBancaria = new CuentaBancaria("Galicia", "1214", "1342142353456436436", "FUTBOL.MATE.PAJARO");
+        consorcio.setCuenta_bancaria(cuentaBancaria);
+        consorcio.setUnidades_funcionales(getUnidadesFuncionales(consorcio));
 
-        Expensa expensa = new Expensa(new Date(2022,6,1), TipoExpensa.ORDINARIA, new ArrayList<Gasto>(), administrador.getEstrategiaLiquidacion());
+        Expensa expensa = new Expensa(new Date(2022,6,1), TipoExpensa.ORDINARIA, new ArrayList<Gasto>(), administrador.getEstrategiaLiquidacion(), consorcio);
 
         administrador.cargarGasto(new Date(2022,6,5), 150000.00, TipoGasto.SERVICIOS, expensa); // Generar y usar Mock para datos GASTOS
         administrador.cargarGasto(new Date(2022,6,7), 7500.00, TipoGasto.MANTENIMIENTO, expensa);
         administrador.cargarGasto(new Date(2022,6,10), 25000.00, TipoGasto.SEGUROS, expensa);
 
-
-        consorcio.calcularExpensas(administrador, administrador.getEstrategiaLiquidacion());
-
-
-/*
-
-
-        Notificador notificador = new Notificador();
-        EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS(new AdapterSMSService());
-        EstrategiaDeNotificacion notificadorWhatsApp = new NotificacionPorWhatsApp(new AdapterWhatsAppService());
-        EstrategiaDeNotificacion notificadorEmail = new NotificacionPorEmail(new AdapterEmailService());
-
-        for(UsuarioNotificacionMock usuarioMock : usuariosMock()) {
-            Notificacion notificacion = new Notificacion();
-            notificacion.setEmailDestinatario(usuarioMock.getEmailDestinatario());
-            notificacion.setEmailRemitente(usuarioMock.getEmailRemitente());
-            notificacion.setMensaje(usuarioMock.getMensaje());
-            notificacion.setNroCompletoDestinatario(usuarioMock.getNroCompletoDestinatario());
-            notificacion.setNroCompletoRemitente(usuarioMock.getEmailRemitente());
-
-            switch(usuarioMock.getEstrategiaElegida()) {
-                case SMS: notificador.cambiarEstrategiaDeNotificacion(notificadorSMS); break;
-                case WHATSAPP: notificador.cambiarEstrategiaDeNotificacion(notificadorWhatsApp); break;
-                case EMAIL: notificador.cambiarEstrategiaDeNotificacion(notificadorEmail); break;
-            }
-
-            notificador.enviar(notificacion);
-        }
-        */
-
+        consorcio.addExpensa(expensa);
+        consorcio.calcularExpensas();
     }
 
-    private static List<UnidadFuncional> getUnidadesFuncionales(){
+    private static List<UnidadFuncional> getUnidadesFuncionales(Consorcio consorcio){
         List<UnidadFuncional> unidadesFunc = new ArrayList<UnidadFuncional>();
 
         Propietario prop = new Propietario();
-        UnidadFuncional uf = new UnidadFuncional();
+        UnidadFuncional uf = new UnidadFuncional(prop, consorcio);
+        Inquilino inq = new Inquilino();
 
         prop.setApellido("Ferreyra");
         prop.setNombre("Fernando");
-
+        inq = new Inquilino();
+        inq.setNombre("Dario");
+        inq.setApellido("Hernandez");
+        inq.setEmail("hernandezd@gmail.com");
+        inq.setNumero("1122332211");
+        uf.setInquilino(inq);
+        uf.setEstrategiaDeNotificacion(Estrategia.SMS);
         uf.setNro_uf(1);
         uf.setTipo_uf(TipoUF.DEPARTAMENTO);
         uf.setPropietario(prop);
@@ -91,10 +72,16 @@ public class Main {
         unidadesFunc.add(uf);
 
         prop = new Propietario();
-        uf = new UnidadFuncional();
-
+        uf = new UnidadFuncional(prop, consorcio);
         prop.setApellido("Meza");
         prop.setNombre("Mauricio");
+        inq = new Inquilino();
+        inq.setNombre("Lucas");
+        inq.setApellido("Rodriguez");
+        inq.setEmail("lucasr@gmail.com");
+        uf.setInquilino(inq);
+        inq.setNumero("1154332872");
+        uf.setEstrategiaDeNotificacion(Estrategia.SMS);
         uf.setNro_uf(2);
         uf.setTipo_uf(TipoUF.DEPARTAMENTO);
         uf.setPropietario(prop);
@@ -103,10 +90,15 @@ public class Main {
         unidadesFunc.add(uf);
 
         prop = new Propietario();
-        uf = new UnidadFuncional();
+        uf = new UnidadFuncional(prop, consorcio);
 
         prop.setApellido("Pelech");
         prop.setNombre("Federico");
+        inq.setNombre("Carlos");
+        inq.setApellido("Lopez");
+        inq.setEmail("carloslopez@gmail.com");
+        uf.setInquilino(inq);
+        uf.setEstrategiaDeNotificacion(Estrategia.EMAIL);
         uf.setNro_uf(3);
         uf.setTipo_uf(TipoUF.COCHERA);
         uf.setPropietario(prop);
@@ -115,40 +107,6 @@ public class Main {
         unidadesFunc.add(uf);
 
         return unidadesFunc;
-    }
-
-    private static List<UsuarioNotificacionMock> usuariosMock(){
-        List<UsuarioNotificacionMock> usuariosMock =
-                new ArrayList<UsuarioNotificacionMock>();
-
-        UsuarioNotificacionMock usuarioMock =
-                new UsuarioNotificacionMock("prueba1@test.com",
-                        "remitente1@test.com",
-                        "Tu paquete esta en camino",
-                        "+541154874514",
-                        "+51454745754",
-                        Estrategia.EMAIL);
-        usuariosMock.add(usuarioMock);
-
-        usuarioMock =
-                new UsuarioNotificacionMock("prueba2@test.com",
-                        "remitente2@test.com",
-                        "Tu pedido ha sido rechazado",
-                        "+54645646546",
-                        "+8985252",
-                        Estrategia.WHATSAPP);
-        usuariosMock.add(usuarioMock);
-
-        usuarioMock =
-                new UsuarioNotificacionMock("prueba3@test.com",
-                        "remitente3@test.com",
-                        "El vendedor esta preparando el pedido",
-                        "+541154874514",
-                        "+51454745754",
-                        Estrategia.SMS);
-        usuariosMock.add(usuarioMock);
-
-        return usuariosMock;
     }
 
 }

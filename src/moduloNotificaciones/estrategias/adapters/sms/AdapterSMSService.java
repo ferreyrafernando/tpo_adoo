@@ -10,8 +10,8 @@ public class AdapterSMSService implements AdapterNotificadorSMS{
      */
     public void enviarSMS(Notificacion notificacion) {
         System.out.println("Enviando SMS a " +
-                notificacion.getNroCompletoDestinatario() + " por Twilio: " +
-                "'" + notificacion.getMensaje() + "'"
+                notificacion.getNroCompletoDestinatario() + ". " +
+                notificacion.getMensaje()
         );
 
     }

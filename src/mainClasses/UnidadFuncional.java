@@ -5,7 +5,14 @@ import commonClasses.PagoRealizado;
 import commonClasses.Propietario;
 import commonClasses.TipoUF;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
+import moduloNotificaciones.Notificacion;
+import moduloNotificaciones.Notificador;
+import moduloNotificaciones.estrategias.*;
+import moduloNotificaciones.estrategias.adapters.email.AdapterEmailService;
+import moduloNotificaciones.estrategias.adapters.sms.AdapterSMSService;
+import moduloNotificaciones.estrategias.adapters.whatsapp.AdapterWhatsAppService;
 
+import java.util.Date;
 import java.util.List;
 
 public class UnidadFuncional {
@@ -16,21 +23,26 @@ public class UnidadFuncional {
     private Inquilino inquilino;
     private TipoUF tipo_uf;
     private List<PagoRealizado> pagosRealizados;
-    private Double saldoDeudor;
-    // agregar saldoDeudor.
-    //TODO Chequear metodo
-    public void calcularExpensas(EstrategiaDeLiquidacion criterio, Double importeTotalConsorcio){
+    private Double saldoDeudor = 0.0;
+    private Estrategia estrategiaDeNotificacion;
+    private Notificador notificador = new Notificador();
+    private Consorcio consorcio;
 
-        //TODO Chequear deuda expensas anteriores para sumarlo al importeUF al final
-        Double deudaUF = this.obtenerDeudaExpensas();
-
-        Double importeUF = (importeTotalConsorcio * this.porcentaje_expensas) + deudaUF;
-
-        System.out.println(this.nro_uf + "    | " + this.propietario.getApellido() + ", " + this.propietario.getNombre() + "      |  " + this.porcentaje_expensas + "%  |  $" + deudaUF + " |  $" + importeUF);
+    public UnidadFuncional(Propietario propietario, Consorcio consorcio) {
+        this.propietario = propietario;
+        this.consorcio = consorcio;
     }
 
-    public Double obtenerDeudaExpensas(){
-        return 4200.00;
+    public void calcularExpensas(EstrategiaDeLiquidacion criterio, Double importeTotalConsorcio) {
+        Double deudaUF = this.obtenerDeudaExpensas();
+        Double importeUF = (importeTotalConsorcio * this.porcentaje_expensas) + saldoDeudor;
+        saldoDeudor = importeUF;
+        System.out.println(this.nro_uf + "    | " + this.propietario.getApellido() + ", " + this.propietario.getNombre() + "      |  " + this.porcentaje_expensas + "%  |  $" + deudaUF + " |  $" + importeUF.floatValue());
+        enviarNotificacion(importeUF);
+    }
+
+    public Double obtenerDeudaExpensas() {
+        return saldoDeudor;
     }
 
     public int getNro_uf() {
@@ -87,5 +99,37 @@ public class UnidadFuncional {
 
     public void setPagosRealizados(List<PagoRealizado> pagosRealizados) {
         this.pagosRealizados = pagosRealizados;
+    }
+
+    public void agregarNuevoPago(Double importe, Date fecha) {
+        PagoRealizado nuevoPago = new PagoRealizado(fecha, importe);
+        pagosRealizados.add(nuevoPago);
+        saldoDeudor = saldoDeudor - importe;
+    }
+
+    public void enviarNotificacion(Double importeAPagar)  {
+        Notificacion nuevaNotificacion = new Notificacion();
+        EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS(new AdapterSMSService());
+        EstrategiaDeNotificacion notificadorWhatsApp = new NotificacionPorWhatsApp(new AdapterWhatsAppService());
+        EstrategiaDeNotificacion notificadorEmail = new NotificacionPorEmail(new AdapterEmailService());
+
+        nuevaNotificacion.setEmailDestinatario(getInquilino().getEmail());
+        nuevaNotificacion.setNroCompletoDestinatario(getInquilino().getNumero());
+        nuevaNotificacion.setMensaje("Se genero una nueva expensa para la unidad funcional " + getNro_uf() + ". El importe a pagar es: $" + importeAPagar.floatValue());
+
+        switch(getEstrategiaDeNotificacion()) {
+            case SMS: notificador.cambiarEstrategiaDeNotificacion(notificadorSMS); break;
+            case WHATSAPP: notificador.cambiarEstrategiaDeNotificacion(notificadorWhatsApp); break;
+            case EMAIL: notificador.cambiarEstrategiaDeNotificacion(notificadorEmail); break;
+        }
+        notificador.enviar(nuevaNotificacion);
+    }
+
+    public Estrategia getEstrategiaDeNotificacion() {
+        return estrategiaDeNotificacion;
+    }
+
+    public void setEstrategiaDeNotificacion(Estrategia estrategiaDeNotificacion) {
+        this.estrategiaDeNotificacion = estrategiaDeNotificacion;
     }
 }
