@@ -74,8 +74,11 @@ public class Consorcio {
 
     //TODO Chequear metodo - Nose bien que hacer con la expensa acá.
     // Pára mi no se debería recibir como parametro la notificación sino que se debe crear aca dentro.
-    public void enviarNotificacion(Expensa expensa, Notificacion notificacion)  {
-        Notificador.enviar(notificacion);
+    public void enviarNotificacion(Expensa expensa, UnidadFuncional unidadFuncional)  {
+        Notificacion nuevaNotificacion = new Notificacion();
+        nuevaNotificacion.setEmailDestinatario(unidadFuncional.getInquilino().getEmail());
+        nuevaNotificacion.setMensaje("Se genero una nueva expensa correspondiente a la fecha" + expensa.getFecha());
+        Notificador.enviar(nuevaNotificacion);
     }
 
 }

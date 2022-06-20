@@ -16,7 +16,7 @@ public class UnidadFuncional {
     private Inquilino inquilino;
     private TipoUF tipo_uf;
     private List<PagoRealizado> pagosRealizados;
-
+    private Double saldoDeudor;
     // agregar saldoDeudor.
     //TODO Chequear metodo
     public void calcularExpensas(EstrategiaDeLiquidacion criterio, Double importeTotalConsorcio){
