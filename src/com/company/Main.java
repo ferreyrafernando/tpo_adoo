@@ -34,11 +34,7 @@ public class Main {
         consorcio.setAdministrador(administrador);
         consorcio.setNombre("Consorcio UADE");
 
-
-
-        consorcio.setUnidades_funcionales(unidadesFuncMock());
-
-
+        consorcio.setUnidades_funcionales(getUnidadesFuncionales());
 
         Expensa expensa = new Expensa(new Date(2022,6,1), TipoExpensa.ORDINARIA, new ArrayList<Gasto>(), administrador.getEstrategiaLiquidacion());
 
@@ -48,11 +44,6 @@ public class Main {
 
 
         consorcio.calcularExpensas(administrador, administrador.getEstrategiaLiquidacion());
-
-
-
-
-
 
 
 /*
@@ -83,34 +74,47 @@ public class Main {
 
     }
 
-    private static List<UnidadFuncional> unidadesFuncMock() {
-        List<UnidadFuncional> unidadesFuncMock = new ArrayList<UnidadFuncionalMock>();
+    private static List<UnidadFuncional> getUnidadesFuncionales(){
+        List<UnidadFuncional> unidadesFunc = new ArrayList<UnidadFuncional>();
 
-        UnidadFuncionalMock uf_mock = new UnidadFuncionalMock("Ferreyra",
-                    "Fernando",
-                    1,
-                    52.5,
-                    0.25,
-                    TipoUF.DEPARTAMENTO);
-        unidadesFuncMock.add(uf_mock);
+        Propietario prop = new Propietario();
+        UnidadFuncional uf = new UnidadFuncional();
 
-        uf_mock = new UnidadFuncionalMock("Meza",
-                "Mauricio",
-                2,
-                83.4,
-                0.35,
-                TipoUF.DEPARTAMENTO);
-        unidadesFuncMock.add(uf_mock);
+        prop.setApellido("Ferreyra");
+        prop.setNombre("Fernando");
 
-        uf_mock = new UnidadFuncionalMock("Pelech",
-                "Federico",
-                3,
-                5.1,
-                0.1,
-                TipoUF.COCHERA);
-        unidadesFuncMock.add(uf_mock);
+        uf.setNro_uf(1);
+        uf.setTipo_uf(TipoUF.DEPARTAMENTO);
+        uf.setPropietario(prop);
+        uf.setMts_cuadrados(52.5);
+        uf.setPorcentaje_expensas(0.025);
+        unidadesFunc.add(uf);
 
-        return unidadesFuncMock;
+        prop = new Propietario();
+        uf = new UnidadFuncional();
+
+        prop.setApellido("Meza");
+        prop.setNombre("Mauricio");
+        uf.setNro_uf(2);
+        uf.setTipo_uf(TipoUF.DEPARTAMENTO);
+        uf.setPropietario(prop);
+        uf.setMts_cuadrados(83.4);
+        uf.setPorcentaje_expensas(0.035);
+        unidadesFunc.add(uf);
+
+        prop = new Propietario();
+        uf = new UnidadFuncional();
+
+        prop.setApellido("Pelech");
+        prop.setNombre("Federico");
+        uf.setNro_uf(3);
+        uf.setTipo_uf(TipoUF.COCHERA);
+        uf.setPropietario(prop);
+        uf.setMts_cuadrados(4.8);
+        uf.setPorcentaje_expensas(0.001);
+        unidadesFunc.add(uf);
+
+        return unidadesFunc;
     }
 
     private static List<UsuarioNotificacionMock> usuariosMock(){
