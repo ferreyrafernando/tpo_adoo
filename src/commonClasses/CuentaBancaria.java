@@ -44,7 +44,6 @@ public class CuentaBancaria {
     }
 
     public Double getSaldo() {
-
         return facade.obtenerSaldoCompleto(new Date(2022,6,1), this.cbu, this.alias, "1234");
     }
 
