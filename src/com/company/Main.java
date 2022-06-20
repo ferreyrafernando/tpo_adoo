@@ -1,10 +1,14 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import commonClasses.*;
 import mainClasses.Administrador;
 import mainClasses.Consorcio;
+import mainClasses.Expensa;
+import mainClasses.UnidadFuncional;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
 import mainClasses.estrategias.PagoCompletoGasto;
 import moduloNotificaciones.Notificacion;
@@ -23,11 +27,36 @@ public class Main {
     public static void main(String[] args) {
 
         Administrador administrador=new Administrador("Juan","Perez");
-        EstrategiaDeLiquidacion pagoCompletoGastoLiquidacion=new PagoCompletoGasto(); //Puede ser esta u otra
+        EstrategiaDeLiquidacion pagoCompletoGastoLiquidacion = new PagoCompletoGasto(); //Puede ser esta u otra
         administrador.setEstrategiaDeLiquidacion(pagoCompletoGastoLiquidacion);
 
-        Consorcio consorcio=new Consorcio();
+        Consorcio consorcio = new Consorcio(); // Generar y usar Mock para datos del consorocio, algunos deptos, cocheras, etc
         consorcio.setAdministrador(administrador);
+        consorcio.setNombre("Consorcio UADE");
+
+
+
+        consorcio.setUnidades_funcionales(unidadesFuncMock());
+
+
+
+        Expensa expensa = new Expensa(new Date(2022,6,1), TipoExpensa.ORDINARIA, new ArrayList<Gasto>(), administrador.getEstrategiaLiquidacion());
+
+        administrador.cargarGasto(new Date(2022,6,5), 150000.00, TipoGasto.SERVICIOS, expensa); // Generar y usar Mock para datos GASTOS
+        administrador.cargarGasto(new Date(2022,6,7), 7500.00, TipoGasto.MANTENIMIENTO, expensa);
+        administrador.cargarGasto(new Date(2022,6,10), 25000.00, TipoGasto.SEGUROS, expensa);
+
+
+        consorcio.calcularExpensas(administrador, administrador.getEstrategiaLiquidacion());
+
+
+
+
+
+
+
+/*
+
 
         Notificador notificador = new Notificador();
         EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS(new AdapterSMSService());
@@ -50,6 +79,38 @@ public class Main {
 
             notificador.enviar(notificacion);
         }
+        */
+
+    }
+
+    private static List<UnidadFuncional> unidadesFuncMock() {
+        List<UnidadFuncional> unidadesFuncMock = new ArrayList<UnidadFuncionalMock>();
+
+        UnidadFuncionalMock uf_mock = new UnidadFuncionalMock("Ferreyra",
+                    "Fernando",
+                    1,
+                    52.5,
+                    0.25,
+                    TipoUF.DEPARTAMENTO);
+        unidadesFuncMock.add(uf_mock);
+
+        uf_mock = new UnidadFuncionalMock("Meza",
+                "Mauricio",
+                2,
+                83.4,
+                0.35,
+                TipoUF.DEPARTAMENTO);
+        unidadesFuncMock.add(uf_mock);
+
+        uf_mock = new UnidadFuncionalMock("Pelech",
+                "Federico",
+                3,
+                5.1,
+                0.1,
+                TipoUF.COCHERA);
+        unidadesFuncMock.add(uf_mock);
+
+        return unidadesFuncMock;
     }
 
     private static List<UsuarioNotificacionMock> usuariosMock(){
