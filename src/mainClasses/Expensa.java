@@ -2,6 +2,7 @@ package mainClasses;
 
 import commonClasses.Gasto;
 import commonClasses.TipoExpensa;
+import commonClasses.TipoGasto;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
 
 import java.util.Date;
@@ -18,8 +19,48 @@ public class Expensa {
     }
 
     public void cargarGasto(Gasto gasto){
-        System.out.println("Cargando Gasto");
+        System.out.println("Cargando Gasto: " + gasto.getTipoGasto());
+        this.gastos.add(gasto);
+
     }
 
+    public Expensa(Date fecha, TipoExpensa tipoExpensa, List<Gasto> listGastos, EstrategiaDeLiquidacion criterio){
+        this.fecha = fecha;
+        this.tipo_expensa = tipoExpensa;
+        this.gastos = listGastos;
+        this.estrategia = criterio;
 
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public TipoExpensa getTipo_expensa() {
+        return tipo_expensa;
+    }
+
+    public void setTipo_expensa(TipoExpensa tipo_expensa) {
+        this.tipo_expensa = tipo_expensa;
+    }
+
+    public List<Gasto> getGastos() {
+        return gastos;
+    }
+
+    public void setGastos(List<Gasto> gastos) {
+        this.gastos = gastos;
+    }
+
+    public EstrategiaDeLiquidacion getEstrategia() {
+        return estrategia;
+    }
+
+    public void setEstrategia(EstrategiaDeLiquidacion estrategia) {
+        this.estrategia = estrategia;
+    }
 }
