@@ -1,50 +1,54 @@
 package commonClasses;
-import moduloBanco.*;
+
+import java.util.Date;
 
 public class CuentaBancaria {
-    private ServicioBancario servicioBancario;
 
-    CuentaBancaria(String banco, String nro_cuenta, String cbu, String alias, Double saldo) {
-        ServicioBancario servicioExterno = new ServicioBancario(banco, nro_cuenta, cbu, alias, saldo);
-        this.servicioBancario = servicioExterno;
-    }
+    private String banco;
+    private String nro_cuenta;
+    private String cbu;
+    private String alias;
+    private Double saldo;
+    private FacadeSaldoBancario facade;
+
     public String getBanco() {
-        return servicioBancario.getBanco();
+        return banco;
     }
 
     public void setBanco(String banco) {
-        servicioBancario.setBanco(banco);
+        this.banco = banco;
     }
 
     public String getNro_cuenta() {
-        return servicioBancario.getNro_cuenta();
+        return nro_cuenta;
     }
 
     public void setNro_cuenta(String nro_cuenta) {
-        servicioBancario.setNro_cuenta(nro_cuenta);
+        this.nro_cuenta = nro_cuenta;
     }
 
     public String getCbu() {
-        return servicioBancario.getCbu();
+        return cbu;
     }
 
     public void setCbu(String cbu) {
-        servicioBancario.setCbu(cbu);
+        this.cbu = cbu;
     }
 
     public String getAlias() {
-        return servicioBancario.getAlias();
+        return alias;
     }
 
     public void setAlias(String alias) {
-        servicioBancario.setAlias(alias);
+        this.alias = alias;
     }
 
     public Double getSaldo() {
-        return servicioBancario.getSaldo();
+
+        return facade.obtenerSaldoCompleto(new Date(2022,6,1), this.cbu, this.alias, "1234");
     }
 
     public void setSaldo(Double saldo) {
-       servicioBancario.setSaldo(saldo);
+        this.saldo = saldo;
     }
 }
