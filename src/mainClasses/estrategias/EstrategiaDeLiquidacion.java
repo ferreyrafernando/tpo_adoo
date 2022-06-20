@@ -1,22 +1,30 @@
 package mainClasses.estrategias;
 
+import commonClasses.CuentaBancaria;
 import commonClasses.Gasto;
 import mainClasses.Administrador;
-
-import java.math.BigDecimal;
+import mainClasses.Consorcio;
+import mainClasses.Expensa;
 
 public abstract class EstrategiaDeLiquidacion {
 
-    abstract void calcularExpensas(Administrador responsable, BigDecimal deudaPrevia);
+    public abstract Double calcularExpensas(Consorcio consorcio);
 
-    void obtencionSaldos() {
+    public Double obtencionSaldos(Consorcio consorcio) {
         System.out.println("Obteniendo saldos");
+        return consorcio.getCuenta_bancaria().getSaldo();
     }
 
-    void calculoGastos(Gasto gastoAnterior) {
+    public Double calculoGastos(Consorcio consorcio) {
         System.out.println("Calculando gastos");
+        Double gastoTotal = 0.0;
+        for(Expensa expensa : consorcio.getExpensas()) {
+            for(Gasto gasto : expensa.getGastos()) {
+                gastoTotal += gasto.getImporte();
+            }
+        }
+        return gastoTotal;
     }
 
-    abstract void divisionExpensas();
-
+    public abstract void divisionExpensas(Double gastos);
 }

@@ -3,11 +3,8 @@ package commonClasses;
 public class Inquilino {
     private String nombre;
     private String apellido;
-
-    Inquilino(String nombre, String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
+    private String email;
+    private String numero;
 
     public String getNombre() {
         return nombre;
@@ -23,5 +20,21 @@ public class Inquilino {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 }

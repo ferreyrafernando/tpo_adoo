@@ -1,6 +1,7 @@
 package mainClasses;
 
 import commonClasses.Gasto;
+import commonClasses.PagoRealizado;
 import commonClasses.TipoGasto;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
 
@@ -56,7 +57,11 @@ public class Administrador {
         Gasto gasto = new Gasto(fecha, importe, tipoGasto, expensa);
     }
 
-    public void cargarPago(Expensa expensa, Consorcio consorcio, int nroUf) {
-
+    public void cargarPago(Double importePagado, Consorcio consorcio, int nroUf, Date fecha) {
+        for(UnidadFuncional uf : consorcio.getUnidades_funcionales()) {
+            if(uf.getNro_uf() == nroUf) {
+                uf.agregarNuevoPago(importePagado, fecha);
+            }
+        }
     }
 }
