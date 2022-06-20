@@ -1,6 +1,10 @@
 package mainClasses;
 
+import commonClasses.Gasto;
+import commonClasses.TipoGasto;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
+
+import java.util.Date;
 
 public class Administrador {
     private String nombre;
@@ -35,5 +39,10 @@ public class Administrador {
 
     public void setEstrategiaDeLiquidacion(EstrategiaDeLiquidacion estrategiaDeLiquidacion) {
         this.estrategiaDeLiquidacion = estrategiaDeLiquidacion;
+    }
+
+    public void cargarGasto(Date fecha, Double importe, TipoGasto tipoGasto, Expensa expensa) {
+        Gasto gasto = new Gasto(fecha, importe, tipoGasto, expensa);
+
     }
 }
