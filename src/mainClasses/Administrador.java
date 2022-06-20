@@ -54,6 +54,9 @@ public class Administrador {
 
     public void cargarGasto(Date fecha, Double importe, TipoGasto tipoGasto, Expensa expensa) {
         Gasto gasto = new Gasto(fecha, importe, tipoGasto, expensa);
+    }
+
+    public void cargarPago(Expensa expensa, Consorcio consorcio, int nroUf) {
 
     }
 }
