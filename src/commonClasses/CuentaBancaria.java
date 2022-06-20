@@ -1,5 +1,7 @@
 package commonClasses;
 
+import java.util.Date;
+
 public class CuentaBancaria {
 
     private String banco;
@@ -7,6 +9,7 @@ public class CuentaBancaria {
     private String cbu;
     private String alias;
     private Double saldo;
+    private FacadeSaldoBancario facade;
 
     public String getBanco() {
         return banco;
@@ -41,7 +44,8 @@ public class CuentaBancaria {
     }
 
     public Double getSaldo() {
-        return saldo;
+
+        return facade.obtenerSaldoCompleto(new Date(2022,6,1), this.cbu, this.alias, "1234");
     }
 
     public void setSaldo(Double saldo) {
