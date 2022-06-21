@@ -10,18 +10,14 @@ public class PagoCompletoGasto extends EstrategiaDeLiquidacion {
 
     private final String NOMBRE_CRITERIO = "Pago completo de gastos";
 
-    @Override
-    public Double calcularExpensas(Consorcio consorcio) {
-        System.out.println("El Administrador " + consorcio.getAdministrador().getNombre() + " " + consorcio.getAdministrador().getApellido() + " inició el calculo de expensas");
-        System.out.println("Calculando expensas segun el criterio de " + NOMBRE_CRITERIO);
-        Double saldo = super.obtencionSaldos(consorcio);
-        Double gastos = super.calculoGastos(consorcio);
-        divisionExpensas(gastos);
-        return gastos;
-    }
 
     @Override
-    public void divisionExpensas(Double gastos) {
+    public Double divisionExpensas(Double saldo, Double gastos) {
+
         System.out.println("Dividiendo expensas para " + NOMBRE_CRITERIO);
+        System.out.println("Gasto Actual " + gastos.floatValue());
+        System.out.println("Gasto Pago Completo " + gastos.floatValue());
+
+        return gastos;
     }
 }

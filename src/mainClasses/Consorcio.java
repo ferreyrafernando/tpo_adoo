@@ -1,9 +1,11 @@
 package mainClasses;
 
 import commonClasses.CuentaBancaria;
+import commonClasses.Gasto;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Consorcio {
@@ -14,6 +16,8 @@ public class Consorcio {
     private List<UnidadFuncional> unidades_funcionales;
     private List<Expensa> expensas = new ArrayList<Expensa>();
 
+    private EstrategiaDeLiquidacion estrategiaDeLiquidacion;
+
     public Administrador getAdministrador() {
         return administrador;
     }
@@ -22,19 +26,53 @@ public class Consorcio {
         this.administrador = administrador;
     }
 
-    public void calcularExpensas() {
-        EstrategiaDeLiquidacion criterio = getAdministrador().getEstrategiaLiquidacion();
-        Double importeConsorcio = criterio.calcularExpensas(this);
-        System.out.println("Calculando Expensas");
+    public void imprimirTablaSalida() {
+        System.out.println("Liquidando Expensas por UF del Consorcio");
         System.out.println("---------------------------------------------------------");
-        System.out.println("Consorcio: "+ this.getNombre() + " Administrador Resp.: " + getAdministrador().getNombre());
+        System.out.println("Consorcio: "+ this.getNombre() + " Administrador Resp.: " + getAdministrador().getNombre() + " " + getAdministrador().getApellido());
         System.out.println("---------------------------------------------------------");
         System.out.println("U.F. |  Propietario           |  Porc. (%)  |  Saldo  |  Total");
-        for(UnidadFuncional uf: this.unidades_funcionales ) {
-            uf.calcularExpensas(criterio, importeConsorcio);
+    }
+
+    public void calcularExpensas() {
+        double saldoTotalConsorcio = getEstrategiaLiquidacion().obtencionSaldos(this);
+        double gastoTotalConsorcio = getEstrategiaLiquidacion().calculoGastos(getExpensas());
+        double importeTotalConsorcio = getEstrategiaLiquidacion().divisionExpensas(saldoTotalConsorcio, gastoTotalConsorcio);
+
+        imprimirTablaSalida();
+
+        for(UnidadFuncional uf : getUnidades_funcionales()) {
+            Double deudaUF = uf.obtenerDeudaExpensas();
+            Double importeUF = (importeTotalConsorcio * uf.getPorcentaje_expensas()) + deudaUF;
+            uf.setSaldoDeudor(importeUF);
+
+            System.out.println(uf.getNro_uf() + "    | " + uf.getPropietario().getApellido() + ", " + uf.getPropietario().getNombre() + "      |  " + uf.getPorcentaje_expensas() + "%  |  $" + deudaUF + " |  $" + importeUF.floatValue());
+            uf.enviarNotificacion(importeUF);
         }
     }
 
+    public void addExpensa(Expensa expensa) {
+        this.expensas.add(expensa);
+    }
+
+    public void setEstrategiaDeLiquidacion(EstrategiaDeLiquidacion estrategiaDeLiquidacion) {
+        this.estrategiaDeLiquidacion = estrategiaDeLiquidacion;
+    }
+
+    public void cargarGasto(Date fecha, Double importe, String tipoGasto, Expensa expensa) {
+        Gasto gasto = new Gasto(fecha, importe, tipoGasto, expensa);
+    }
+    public EstrategiaDeLiquidacion getEstrategiaLiquidacion() {
+        return estrategiaDeLiquidacion;
+    }
+
+    public void cargarPago(Double importePagado, int nroUf, Date fecha) {
+        for(UnidadFuncional uf : getUnidades_funcionales()) {
+            if(uf.getNro_uf() == nroUf) {
+                uf.agregarNuevoPago(importePagado, fecha);
+            }
+        }
+    }
     public String getNombre() {
         return nombre;
     }
@@ -71,7 +109,5 @@ public class Consorcio {
         return expensas;
     }
 
-    public void addExpensa(Expensa expensa) {
-        this.expensas.add(expensa);
-    }
+
 }

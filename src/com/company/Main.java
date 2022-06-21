@@ -10,41 +10,45 @@ import mainClasses.Consorcio;
 import mainClasses.Expensa;
 import mainClasses.UnidadFuncional;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
+import mainClasses.estrategias.PagoCompletoFondoDeReserva;
+import mainClasses.estrategias.PagoCompletoFuturosFondosDeReserva;
 import mainClasses.estrategias.PagoCompletoGasto;
-import moduloNotificaciones.Notificacion;
-import moduloNotificaciones.Notificador;
 import moduloNotificaciones.estrategias.Estrategia;
-import moduloNotificaciones.estrategias.EstrategiaDeNotificacion;
-import moduloNotificaciones.estrategias.NotificacionPorEmail;
-import moduloNotificaciones.estrategias.NotificacionPorSMS;
-import moduloNotificaciones.estrategias.NotificacionPorWhatsApp;
-import moduloNotificaciones.estrategias.adapters.email.AdapterEmailService;
-import moduloNotificaciones.estrategias.adapters.sms.AdapterSMSService;
-import moduloNotificaciones.estrategias.adapters.whatsapp.AdapterWhatsAppService;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Administrador administrador=new Administrador("Juan","Perez");
-        EstrategiaDeLiquidacion pagoCompletoGastoLiquidacion = new PagoCompletoGasto(); //Puede ser esta u otra
-        administrador.setEstrategiaDeLiquidacion(pagoCompletoGastoLiquidacion);
+        Administrador administrador=new Administrador("Juan","Perez", "jperez", "1234");
+        try {
+            administrador.login();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        Consorcio consorcio = new Consorcio(); // Generar y usar Mock para datos del consorocio, algunos deptos, cocheras, etc
+        Consorcio consorcio = new Consorcio();
         consorcio.setAdministrador(administrador);
+        EstrategiaDeLiquidacion pagoCompletoGastoLiquidacion = new PagoCompletoGasto(); //Divide los gastos totales y los restante lo divide por UF
+        EstrategiaDeLiquidacion pagoCompletoFondoReserva = new PagoCompletoFondoDeReserva(); //Utiliza y saldo y los restante lo divide por UF
+        EstrategiaDeLiquidacion pagoCompletoFuturoFondoReserva = new PagoCompletoFuturosFondosDeReserva(); //Agrega un porcentaje a los gastos para el fondo y lo divide por UF
+        consorcio.setEstrategiaDeLiquidacion(pagoCompletoGastoLiquidacion);
         consorcio.setNombre("Consorcio UADE");
 
         CuentaBancaria cuentaBancaria = new CuentaBancaria("Galicia", "1214", "1342142353456436436", "FUTBOL.MATE.PAJARO");
         consorcio.setCuenta_bancaria(cuentaBancaria);
         consorcio.setUnidades_funcionales(getUnidadesFuncionales(consorcio));
 
-        Expensa expensa = new Expensa(new Date(2022,6,1), TipoExpensa.ORDINARIA, new ArrayList<Gasto>(), administrador.getEstrategiaLiquidacion(), consorcio);
+        Expensa expensa = new Expensa(new Date(2022,6,1), TipoExpensa.ORDINARIA, new ArrayList<Gasto>(), consorcio.getEstrategiaLiquidacion(), consorcio);
 
-        administrador.cargarGasto(new Date(2022,6,5), 150000.00, TipoGasto.SERVICIOS, expensa); // Generar y usar Mock para datos GASTOS
-        administrador.cargarGasto(new Date(2022,6,7), 7500.00, TipoGasto.MANTENIMIENTO, expensa);
-        administrador.cargarGasto(new Date(2022,6,10), 25000.00, TipoGasto.SEGUROS, expensa);
-
+        consorcio.cargarGasto(new Date(2022,6,5), 150000.00, "SERVICIOS", expensa);
+        consorcio.cargarGasto(new Date(2022,6,7), 7500.00, "MANTENIMIENTO", expensa);
+        consorcio.cargarGasto(new Date(2022,6,10), 25000.00, "SEGUROS", expensa);
         consorcio.addExpensa(expensa);
+
+        expensa = new Expensa(new Date(2022,6,1), TipoExpensa.EXTRAORDINARIA, new ArrayList<Gasto>(), consorcio.getEstrategiaLiquidacion(), consorcio);
+        consorcio.cargarGasto(new Date(2022,6,8), 50000.00, "MANTENIMIENTO", expensa);
+        consorcio.addExpensa(expensa);
+
         consorcio.calcularExpensas();
     }
 
@@ -94,6 +98,7 @@ public class Main {
 
         prop.setApellido("Pelech");
         prop.setNombre("Federico");
+        inq = new Inquilino();
         inq.setNombre("Carlos");
         inq.setApellido("Lopez");
         inq.setEmail("carloslopez@gmail.com");
@@ -104,6 +109,25 @@ public class Main {
         uf.setPropietario(prop);
         uf.setMts_cuadrados(4.8);
         uf.setPorcentaje_expensas(0.001);
+        unidadesFunc.add(uf);
+
+        prop = new Propietario();
+        uf = new UnidadFuncional(prop, consorcio);
+
+        prop.setApellido("Stricagnoli");
+        prop.setNombre("Matias");
+        inq = new Inquilino();
+        inq.setNombre("Matias");
+        inq.setApellido("Stricagnoli");
+        inq.setNumero("1128725433");
+        inq.setEmail("mstricagnoli@uade.edu.ar");
+        uf.setInquilino(inq);
+        uf.setEstrategiaDeNotificacion(Estrategia.WHATSAPP);
+        uf.setNro_uf(4);
+        uf.setTipo_uf(TipoUF.DEPARTAMENTO);
+        uf.setPropietario(prop);
+        uf.setMts_cuadrados(83.4);
+        uf.setPorcentaje_expensas(0.035);
         unidadesFunc.add(uf);
 
         return unidadesFunc;

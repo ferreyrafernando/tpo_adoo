@@ -7,7 +7,7 @@ import java.util.Date;
 public class GastoRecurrente extends Gasto {
     private Integer periodoDias;
 
-    public GastoRecurrente(Date fecha, Double importe, TipoGasto tipoGasto, Expensa expensa) {
+    public GastoRecurrente(Date fecha, Double importe, String tipoGasto, Expensa expensa) {
         super(fecha, importe, tipoGasto, expensa);
     }
 

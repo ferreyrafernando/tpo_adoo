@@ -2,7 +2,6 @@ package mainClasses;
 
 import commonClasses.Gasto;
 import commonClasses.TipoExpensa;
-import commonClasses.TipoGasto;
 import mainClasses.estrategias.EstrategiaDeLiquidacion;
 
 import java.util.Date;

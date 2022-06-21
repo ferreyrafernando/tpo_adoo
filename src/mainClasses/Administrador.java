@@ -1,10 +1,5 @@
 package mainClasses;
 
-import commonClasses.Gasto;
-import commonClasses.PagoRealizado;
-import commonClasses.TipoGasto;
-import mainClasses.estrategias.EstrategiaDeLiquidacion;
-
 import java.util.Date;
 
 public class Administrador {
@@ -21,13 +16,17 @@ public class Administrador {
 
     private String nombre;
     private String apellido;
+    private String user;
+    private String pass;
 
-    public Administrador(String nombre, String apellido) {
+    public Administrador(String nombre, String apellido, String usuario, String pass) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.user = usuario;
+        this.pass = pass;
     }
 
-    private EstrategiaDeLiquidacion estrategiaDeLiquidacion;
+
 
     public String getNombre() {
         return nombre;
@@ -45,23 +44,28 @@ public class Administrador {
         this.apellido = apellido;
     }
 
-    public EstrategiaDeLiquidacion getEstrategiaLiquidacion() {
-        return estrategiaDeLiquidacion;
+
+    public void login() throws InterruptedException {
+        System.out.println("Autenticando Usuario " + this.getUser() +"...");
+        Thread.sleep(2500);
+        System.out.println("Autenticado Correctamente!");
     }
 
-    public void setEstrategiaDeLiquidacion(EstrategiaDeLiquidacion estrategiaDeLiquidacion) {
-        this.estrategiaDeLiquidacion = estrategiaDeLiquidacion;
+
+
+    public String getUser() {
+        return user;
     }
 
-    public void cargarGasto(Date fecha, Double importe, TipoGasto tipoGasto, Expensa expensa) {
-        Gasto gasto = new Gasto(fecha, importe, tipoGasto, expensa);
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public void cargarPago(Double importePagado, Consorcio consorcio, int nroUf, Date fecha) {
-        for(UnidadFuncional uf : consorcio.getUnidades_funcionales()) {
-            if(uf.getNro_uf() == nroUf) {
-                uf.agregarNuevoPago(importePagado, fecha);
-            }
-        }
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

@@ -1,16 +1,15 @@
 package commonClasses;
 
-import java.security.PrivateKey;
 import java.util.Date;
 import mainClasses.Expensa;
 
 public class Gasto {
     private Date fecha;
     private Double importe;
-    private TipoGasto tipoGasto;
+    private String tipoGasto;
     private Expensa expensa;
 
-    public Gasto(Date fecha, Double importe, TipoGasto tipoGasto, Expensa expensa){
+    public Gasto(Date fecha, Double importe, String tipoGasto, Expensa expensa){
         this.fecha = fecha;
         this.importe = importe;
         this.tipoGasto = tipoGasto;
@@ -34,11 +33,11 @@ public class Gasto {
         this.fecha = fecha;
     }
 
-    public TipoGasto getTipoGasto() {
+    public String getTipoGasto() {
         return tipoGasto;
     }
 
-    public void setTipoGasto(TipoGasto tipoGasto) {
+    public void setTipoGasto(String tipoGasto) {
         this.tipoGasto = tipoGasto;
     }
 
@@ -50,6 +49,4 @@ public class Gasto {
         this.expensa = expensa;
     }
 
-    //TODO Chequear metodo
-    //public void cargarGasto();
 }

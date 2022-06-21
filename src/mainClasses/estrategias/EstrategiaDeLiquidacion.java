@@ -1,24 +1,22 @@
 package mainClasses.estrategias;
 
-import commonClasses.CuentaBancaria;
 import commonClasses.Gasto;
-import mainClasses.Administrador;
 import mainClasses.Consorcio;
 import mainClasses.Expensa;
 
-public abstract class EstrategiaDeLiquidacion {
+import java.util.List;
 
-    public abstract Double calcularExpensas(Consorcio consorcio);
+public abstract class EstrategiaDeLiquidacion {
 
     public Double obtencionSaldos(Consorcio consorcio) {
         System.out.println("Obteniendo saldos");
         return consorcio.getCuenta_bancaria().getSaldo();
     }
 
-    public Double calculoGastos(Consorcio consorcio) {
+    public Double calculoGastos(List<Expensa> expensas) {
         System.out.println("Calculando gastos");
         Double gastoTotal = 0.0;
-        for(Expensa expensa : consorcio.getExpensas()) {
+        for(Expensa expensa : expensas) {
             for(Gasto gasto : expensa.getGastos()) {
                 gastoTotal += gasto.getImporte();
             }
@@ -26,5 +24,5 @@ public abstract class EstrategiaDeLiquidacion {
         return gastoTotal;
     }
 
-    public abstract void divisionExpensas(Double gastos);
+    public abstract Double divisionExpensas(Double saldo, Double gastos);
 }

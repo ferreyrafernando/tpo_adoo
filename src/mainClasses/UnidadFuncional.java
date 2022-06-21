@@ -4,7 +4,6 @@ import commonClasses.Inquilino;
 import commonClasses.PagoRealizado;
 import commonClasses.Propietario;
 import commonClasses.TipoUF;
-import mainClasses.estrategias.EstrategiaDeLiquidacion;
 import moduloNotificaciones.Notificacion;
 import moduloNotificaciones.Notificador;
 import moduloNotificaciones.estrategias.*;
@@ -31,14 +30,6 @@ public class UnidadFuncional {
     public UnidadFuncional(Propietario propietario, Consorcio consorcio) {
         this.propietario = propietario;
         this.consorcio = consorcio;
-    }
-
-    public void calcularExpensas(EstrategiaDeLiquidacion criterio, Double importeTotalConsorcio) {
-        Double deudaUF = this.obtenerDeudaExpensas();
-        Double importeUF = (importeTotalConsorcio * this.porcentaje_expensas) + saldoDeudor;
-        saldoDeudor = importeUF;
-        System.out.println(this.nro_uf + "    | " + this.propietario.getApellido() + ", " + this.propietario.getNombre() + "      |  " + this.porcentaje_expensas + "%  |  $" + deudaUF + " |  $" + importeUF.floatValue());
-        enviarNotificacion(importeUF);
     }
 
     public Double obtenerDeudaExpensas() {
@@ -131,5 +122,13 @@ public class UnidadFuncional {
 
     public void setEstrategiaDeNotificacion(Estrategia estrategiaDeNotificacion) {
         this.estrategiaDeNotificacion = estrategiaDeNotificacion;
+    }
+
+    public Double getSaldoDeudor() {
+        return saldoDeudor;
+    }
+
+    public void setSaldoDeudor(Double saldoDeudor) {
+        this.saldoDeudor = saldoDeudor;
     }
 }
